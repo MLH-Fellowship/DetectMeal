@@ -3,11 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/detectFragment">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/detectFragment"
         android:name="com.project.socialdistance.fragments.DetectFragment"
         android:label="fragment_detect"
         tools:layout="@layout/fragment_detect" />
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.project.socialdistance.onboarding.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.project.socialdistance.onboarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_detectFragment"
+            app:destination="@id/detectFragment" />
+    </fragment>
 </navigation>
