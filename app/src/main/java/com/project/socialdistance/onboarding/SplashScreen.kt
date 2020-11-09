@@ -15,9 +15,13 @@ class SplashScreen : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         Handler().postDelayed({
-            findNavController().navigate(R.id.action_splashScreen_to_viewPagerFragment)
+            if (restorePref(requireContext())) {
+                findNavController().navigate(R.id.action_splashScreen_to_detectFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashScreen_to_viewPagerFragment)
+            }
+
         }, 3000)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_splash_screen, container, false)

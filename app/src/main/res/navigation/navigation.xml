@@ -18,12 +18,15 @@
         <action
             android:id="@+id/action_splashScreen_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment" />
+        <action
+            android:id="@+id/action_splashScreen_to_detectFragment"
+            app:destination="@id/detectFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.project.socialdistance.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" >
+        tools:layout="@layout/fragment_view_pager">
         <action
             android:id="@+id/action_viewPagerFragment_to_detectFragment"
             app:destination="@id/detectFragment" />

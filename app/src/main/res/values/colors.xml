@@ -3,4 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#00203f</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="lightOrange">#FFEADD</color>
+    <color name="Orange">#FFAD6E</color>
+    <color name="Bluish">#00203f</color>
 </resources>
