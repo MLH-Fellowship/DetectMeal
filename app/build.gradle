@@ -27,6 +27,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //prevent tflite from being compressed
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 dependencies {
@@ -58,8 +63,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
 
-    //ml kit object detection
-    implementation 'com.google.mlkit:object-detection:16.2.1'
+    // Object detection and tracking feature with custom classifier
+    implementation 'com.google.mlkit:object-detection-custom:16.2.1'
 
 
 }
