@@ -3,6 +3,7 @@ package com.project.socialdistance.fragments
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,7 +17,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import com.project.socialdistance.GraphicOverlay
 import com.project.socialdistance.R
+import com.project.socialdistance.objectanalyzer.ObjectAnalyzer
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -42,9 +45,12 @@ class DetectFragment : Fragment() {
         private const val TAG = "DetectFragment"
     }
     private var camera: Camera? = null
+    private var displayId: Int = -1
+    private var imageAnalyzer: ImageAnalysis? = null
     private var preview: Preview? = null
     private lateinit var container: ConstraintLayout
     private lateinit var viewFinder: PreviewView
+    private lateinit var graphicOverlay: GraphicOverlay
 
     /** Blocking camera operations are performed using this executor */
     private lateinit var cameraExecutor: ExecutorService
@@ -67,10 +73,18 @@ class DetectFragment : Fragment() {
 
         container = view as ConstraintLayout
         viewFinder = container.findViewById(R.id.viewfinder)
+        graphicOverlay = container.findViewById(R.id.graphic_overlay)
 
         // Request camera permissions
         if (allPermissionsGranted()) {
-            startCamera()
+            // Wait for the views to be properly laid out
+            viewFinder.post {
+                // Keep track of the display in which this view is attached
+                displayId = viewFinder.display.displayId
+
+                // Set up the camera and its use cases
+                startCamera()
+            }
         } else {
             requestPermissions(
                 REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
@@ -101,10 +115,24 @@ class DetectFragment : Fragment() {
         cameraProviderFuture.addListener(Runnable {
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            val rotation = viewFinder.display.rotation
 
             // Preview
             preview = Preview.Builder()
                 .build()
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setTargetRotation(rotation)
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build()
+                .also {
+                    it.setAnalyzer(
+                        cameraExecutor
+                        , ObjectAnalyzer(
+                            requireContext(),
+                            graphicOverlay
+                        )
+                    )
+                }
 
             // Select back camera
             val cameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
@@ -115,7 +143,7 @@ class DetectFragment : Fragment() {
 
                 // Bind use cases to camera
                 camera = cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview)
+                    this, cameraSelector, preview, imageAnalyzer)
                 preview?.setSurfaceProvider(viewFinder.surfaceProvider)
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
