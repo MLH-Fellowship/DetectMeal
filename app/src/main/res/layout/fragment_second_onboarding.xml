@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/SecondIV"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/nunito_semibold"
             android:layout_marginTop="10dp"
             android:text="Super easy to use"
             android:textColor="#00203f"
@@ -42,6 +43,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="16dp"
             android:text="All you need is a phone with a camera and your hands basically. Start the app and point your camera to your meal. Easy peasy! "
