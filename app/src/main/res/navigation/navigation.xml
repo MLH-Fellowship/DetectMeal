@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/detectFragment"
-        android:name="com.project.socialdistance.fragments.DetectFragment"
+        android:name="com.project.detectmeal.fragments.DetectFragment"
         android:label="fragment_detect"
         tools:layout="@layout/fragment_detect" />
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.project.socialdistance.onboarding.SplashScreen"
+        android:name="com.project.detectmeal.onboarding.SplashScreen"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.project.socialdistance.onboarding.ViewPagerFragment"
+        android:name="com.project.detectmeal.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager">
         <action

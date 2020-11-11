@@ -15,7 +15,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-    <com.project.socialdistance.GraphicOverlay
+    <com.project.detectmeal.GraphicOverlay
         android:id="@+id/graphic_overlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
