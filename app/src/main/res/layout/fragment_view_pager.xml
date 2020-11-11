@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Next"
             android:textColor="@color/Bluish"
             android:textSize="20sp"

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/firstIV"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -31,6 +31,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Identify Your meals"
+            android:fontFamily="@font/nunito_semibold"
             android:textColor="#00203f"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -44,6 +45,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/nunito"
             android:text="Easily get details of what you are about to consume, you wouldn't want to eat what you don't know, would you? "
             android:textAlignment="center"
             android:textColor="@color/Bluish"
